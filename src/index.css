@@ -2,25 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-  margin:0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,body{
-  height: 100%;
-  width: 100%;
-}
-
 .disabled {
-    color: #aaa; /* Change text color to gray */
-    cursor: not-allowed; /* Change cursor to indicate non-interactivity */
-    pointer-events: none; /* Disable pointer events to prevent interactions */
-    user-select: none; /* Disable text selection */
+    color: #aaa; 
+    cursor: not-allowed; 
+    pointer-events: none; 
+    user-select: none; /
   }
 
- /* Keyframes for the first word */
+
 @keyframes neon-glow-1 {
   0% {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
@@ -30,30 +19,6 @@ html,body{
   }
 }
 
-/* Keyframes for the second word */
-@keyframes rotate-2 {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* Keyframes for the third word */
-@keyframes color-shift-3 {
-  0% {
-    color: #00BFFF;
-  }
-  50% {
-    color: #FFD700; /* Gold */
-  }
-  100% {
-    color: #00BFFF;
-  }
-}
-
-/* Apply styles and animations to each word */
 .my-futuristic-text-1 {
   font-family: 'Segoe UI', sans-serif;
   font-size: 2rem;
