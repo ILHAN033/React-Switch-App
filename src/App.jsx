@@ -1,0 +1,488 @@
+import { useState } from "react";
+
+const tasks = [
+  {
+    id: 2,
+    item: "banana",
+    checked: false,
+    disabled: true,
+  },
+  { id: 4, item: "Apple", checked: false, disabled: true },
+];
+
+// function App() {
+//   const [items, setItems] = useState(tasks);
+//   const [input, setInput] = useState("");
+
+//   function handleAdd() {
+//     if (!input) return;
+//     const newItem = { id: Date.now(), item: input, checked: false };
+//     setItems((items) => [...items, newItem]);
+//     console.log(items);
+//   }
+
+//   function checked(id) {
+//     setItems((items) =>
+//       items.map((item) =>
+//         item.id === id ? { ...item, checked: !item.checked } : item
+//       )
+//     );
+//   }
+
+//   return (
+//     <div className=" h-screen w-screen bg-slate-800 text-white flex items-center">
+//       <Form
+//         handleAdd={handleAdd}
+//         input={input}
+//         setInput={setInput}
+//         items={items}
+//         onToggle={checked}
+//       />
+
+//       <Form
+//         handleAdd={handleAdd}
+//         input={input}
+//         setInput={setInput}
+//         items={items}
+//         onToggle={checked}
+//       />
+//     </div>
+//   );
+// }
+
+// function Form({ handleAdd, input, setInput, items, onToggle }) {
+//   return (
+//     <div className="bg-orange-600 h-2/3 w-80 ml-28 rounded-md overflow-hidden">
+//       <form
+//         className="flex gap-3 justify-center mt-2"
+//         onSubmit={(e) => {
+//           e.preventDefault();
+//           handleAdd(input);
+//         }}
+//       >
+//         <input
+//           className="outline-none rounded-lg text-black px-3"
+//           type="text"
+//           value={input}
+//           onChange={(e) => {
+//             setInput(e.target.value);
+//             console.log(input);
+//           }}
+//         />
+//         <button className=" bg-blue-700 w-10 rounded-lg">add</button>
+//       </form>
+//       <Display items={items} onToggle={onToggle} />
+//     </div>
+//   );
+// }
+
+// function Display({ items, onToggle }) {
+//   return (
+//     <ul className="ml-10">
+//       {items.map((item) => (
+//         <li key={item.id} className="flex gap-2">
+//           <span style={item.checked ? { textDecoration: "line-through" } : {}}>
+//             <input
+//               type="checkbox"
+//               value={item.checked}
+//               onChange={() => onToggle(item.id)}
+//             />
+//             {item.item}
+//           </span>
+//         </li>
+//       ))}
+//     </ul>
+//   );
+// }
+
+// 2nd version
+
+// function App() {
+//   return (
+//     <div className=" h-screen w-screen bg-slate-800 text-white flex items-center">
+//       <Form />
+
+//       <Form />
+//     </div>
+//   );
+// }
+
+// function Form() {
+//   const [items, setItems] = useState(tasks);
+//   const [input, setInput] = useState("");
+
+//   function handleAdd() {
+//     if (!input) return;
+//     const newItem = { id: Date.now(), item: input, checked: false };
+//     setItems((items) => [...items, newItem]);
+//     console.log(items);
+//   }
+
+//   function checked(id) {
+//     setItems((items) =>
+//       items.map((item) =>
+//         item.id === id ? { ...item, checked: !item.checked } : item
+//       )
+//     );
+//   }
+
+//   return (
+//     <div className="bg-orange-600 h-2/3 w-80 ml-28 rounded-md overflow-hidden">
+//       <form
+//         className="flex gap-3 justify-center mt-2"
+//         onSubmit={(e) => {
+//           e.preventDefault();
+//           handleAdd(input);
+//         }}
+//       >
+//         <input
+//           className="outline-none rounded-lg text-black px-3"
+//           type="text"
+//           value={input}
+//           onChange={(e) => {
+//             setInput(e.target.value);
+//             console.log(input);
+//           }}
+//         />
+//         <button className=" bg-blue-700 w-10 rounded-lg">add</button>
+//       </form>
+//       <Display items={items} onToggle={checked} />
+//     </div>
+//   );
+// }
+
+// function Display({ items, onToggle }) {
+//   return (
+//     <ul className="ml-10">
+//       {items.map((item) => (
+//         <li key={item.id} className="flex gap-2">
+//           <span style={item.checked ? { textDecoration: "line-through" } : {}}>
+//             <input
+//               type="checkbox"
+//               value={item.checked}
+//               onChange={() => onToggle(item.id)}
+//             />
+//             {item.item}
+//           </span>
+//         </li>
+//       ))}
+//     </ul>
+//   );
+// }
+
+// version 3
+// function App() {
+//   const [items1, setItems1] = useState(tasks);
+//   const [items2, setItems2] = useState(tasks);
+//   const [input1, setInput1] = useState("");
+//   const [input2, setInput2] = useState("");
+
+//   return (
+//     <div className=" h-screen w-screen bg-slate-800 text-white flex  items-center">
+//       <Form
+//         items={items1}
+//         input={input1}
+//         setItems={setItems1}
+//         setInput={setInput1}
+//       />
+
+//       <Switch
+//         items1={items1}
+//         setItems1={setItems1}
+//         setInput1={setInput1}
+//         items2={items2}
+//         setItems2={setItems2}
+//         setInput2={setInput2}
+//       />
+
+//       <Form
+//         items={items2}
+//         input={input2}
+//         setItems={setItems2}
+//         setInput={setInput2}
+//       />
+//     </div>
+//   );
+// }
+
+// function Form({ input, setInput, setItems, items }) {
+//   function handleAdd() {
+//     if (!input) return;
+//     const newItem = {
+//       id: Date.now(),
+//       item: input,
+//       checked: false,
+//       disabled: false,
+//     };
+//     setItems((items) => [...items, newItem]);
+//     setInput("");
+//     console.log(items);
+//   }
+
+//   function checked(id) {
+//     setItems((items) =>
+//       items.map((item) =>
+//         item.id === id ? { ...item, checked: !item.checked } : item
+//       )
+//     );
+//   }
+
+//   return (
+//     <div className="bg-orange-600 h-2/3 w-80 ml-28 rounded-md overflow-hidden">
+//       <form
+//         className="flex gap-3 justify-center mt-2"
+//         onSubmit={(e) => {
+//           e.preventDefault();
+//           handleAdd(input);
+//         }}
+//       >
+//         <input
+//           className="outline-none rounded-lg text-black px-3"
+//           type="text"
+//           value={input}
+//           onChange={(e) => {
+//             setInput(e.target.value);
+//             console.log(input);
+//           }}
+//         />
+//         <button className=" bg-blue-700 w-10 rounded-lg">add</button>
+//       </form>
+//       <Display items={items} onToggle={checked} />
+//     </div>
+//   );
+// }
+
+// function Display({ items, onToggle }) {
+//   return (
+//     <ul className="ml-10">
+//       {items?.map((item) => (
+//         <li key={item.id} className={item.disabled ? "disabled" : "flex gap-2"}>
+//           <span style={item.checked ? { textDecoration: "line-through" } : {}}>
+//             {!item.disabled ? (
+//               <input
+//                 type="checkbox"
+//                 value={item.checked}
+//                 onChange={() => onToggle(item.id)}
+//               />
+//             ) : null}
+
+//             {item.item}
+//           </span>
+//         </li>
+//       ))}
+//     </ul>
+//   );
+// }
+
+// function Switch({ items1, items2, setItems1, setItems2 }) {
+//   return (
+//     <div className="flex bg-slate-700 flex-col gap-2 h-20 w-20 justify-center rounded-lg">
+//       <button
+//         onClick={() =>
+//           items2.map((item, i) =>
+//             item.checked === true
+//               ? (setItems1((itm) => [
+//                   ...itm,
+//                   { id: item.id, item: item.item, checked: !item.checked },
+//                 ]),
+//                 items2.splice(i, 1))
+//               : console.log("false")
+//           )
+//         }
+//       >
+//         ⬅️
+//       </button>
+
+//       <button
+//         onClick={() =>
+//           items1.map((item, i) =>
+//             item.checked
+//               ? (setItems2((itm) => [
+//                   ...itm,
+//                   { id: item.id, item: item.item, checked: !item.checked },
+//                 ]),
+//                 items1.splice(i, 1))
+//               : item
+//           )
+//         }
+//       >
+//         ➡️
+//       </button>
+//     </div>
+//   );
+// }
+
+// Version 4
+import { motion } from "framer-motion";
+
+function App() {
+  const [items1, setItems1] = useState(tasks);
+  const [items2, setItems2] = useState(tasks);
+  const [input1, setInput1] = useState("");
+  const [input2, setInput2] = useState("");
+
+  return (
+    <div className="h-screen flex items-center justify-center bg-gradient-to-r from-purple-500 to-blue-500 gap-2">
+      <h1 class="text-4xl font-bold text-white text-center p-16">
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+        >
+          React
+        </motion.span>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
+        >
+          <h3 className="my-futuristic-text-1">Switch</h3>
+        </motion.span>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 3 }}
+        >
+          App
+        </motion.span>
+      </h1>
+
+      <Form
+        items={items1}
+        input={input1}
+        setItems={setItems1}
+        setInput={setInput1}
+      />
+
+      <Switch
+        items1={items1}
+        setItems1={setItems1}
+        setInput1={setInput1}
+        items2={items2}
+        setItems2={setItems2}
+        setInput2={setInput2}
+      />
+
+      <Form
+        items={items2}
+        input={input2}
+        setItems={setItems2}
+        setInput={setInput2}
+      />
+    </div>
+  );
+}
+
+function Form({ input, setInput, setItems, items }) {
+  function handleAdd() {
+    if (!input) return;
+    const newItem = {
+      id: Date.now(),
+      item: input,
+      checked: false,
+      disabled: false,
+    };
+    setItems((items) => [...items, newItem]);
+    setInput("");
+    console.log(items);
+  }
+
+  function checked(id) {
+    setItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, checked: !item.checked } : item
+      )
+    );
+  }
+
+  return (
+    <div className="bg-gradient-to-br from-blue-600 to-purple-700 text-white p-8 rounded-lg shadow-xl">
+      <form
+        className="flex justify-center mt-5 gap-2"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleAdd(input);
+        }}
+      >
+        <input
+          className="p-4 w-48 bg-gradient-to-r from-purple-700 to-blue-600 text-white placeholder-gray-200 border-2 border-transparent focus:outline-none focus:border-blue-500 rounded-lg shadow-md hover:shadow-lg"
+          placeholder="Add Item.."
+          type="text"
+          value={input}
+          onChange={(e) => {
+            setInput(e.target.value);
+            console.log(input);
+          }}
+        />
+        <button className="px-6 py-3 text-white bg-gradient-to-r from-purple-700 to-blue-600 rounded-full hover:scale-105 transform transition-transform ease-in-out duration-300">
+          add
+        </button>
+      </form>
+      <Display items={items} onToggle={checked} />
+    </div>
+  );
+}
+
+function Display({ items, onToggle }) {
+  return (
+    <ul>
+      {items?.map((item) => (
+        <li key={item.id} className={item.disabled ? "disabled" : "flex gap-2"}>
+          <span style={item.checked ? { textDecoration: "line-through" } : {}}>
+            {!item.disabled ? (
+              <input
+                type="checkbox"
+                value={item.checked}
+                onChange={() => onToggle(item.id)}
+              />
+            ) : null}
+
+            {item.item}
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function Switch({ items1, items2, setItems1, setItems2 }) {
+  return (
+    <div className="flex gap-2">
+      <button
+        className="relative w-16 h-8 bg-gradient-to-r from-blue-500 to-purple-700 rounded-full"
+        onClick={() =>
+          items2.map((item, i) =>
+            item.checked === true
+              ? (setItems1((itm) => [
+                  ...itm,
+                  { id: item.id, item: item.item, checked: !item.checked },
+                ]),
+                items2.splice(i, 1))
+              : null
+          )
+        }
+      >
+        ⬅️
+      </button>
+
+      <button
+        className="relative w-16 h-8 bg-gradient-to-r from-blue-500 to-purple-700 rounded-full"
+        onClick={() =>
+          items1.map((item, i) =>
+            item.checked
+              ? (setItems2((itm) => [
+                  ...itm,
+                  { id: item.id, item: item.item, checked: !item.checked },
+                ]),
+                items1.splice(i, 1))
+              : item
+          )
+        }
+      >
+        ➡️
+      </button>
+    </div>
+  );
+}
+
+export default App;

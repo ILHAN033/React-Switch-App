@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,body{
+  height: 100%;
+  width: 100%;
+}
+
+.disabled {
+    color: #aaa; /* Change text color to gray */
+    cursor: not-allowed; /* Change cursor to indicate non-interactivity */
+    pointer-events: none; /* Disable pointer events to prevent interactions */
+    user-select: none; /* Disable text selection */
+  }
+
+ /* Keyframes for the first word */
+@keyframes neon-glow-1 {
+  0% {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    text-shadow: 0 0 10px #00BFFF, 0 0 20px #00BFFF, 0 0 30px #00BFFF;
+  }
+}
+
+/* Keyframes for the second word */
+@keyframes rotate-2 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Keyframes for the third word */
+@keyframes color-shift-3 {
+  0% {
+    color: #00BFFF;
+  }
+  50% {
+    color: #FFD700; /* Gold */
+  }
+  100% {
+    color: #00BFFF;
+  }
+}
+
+/* Apply styles and animations to each word */
+.my-futuristic-text-1 {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 2rem;
+  color: #00BFFF;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 2px;
+  animation: neon-glow-1 1s infinite alternate;
+}
+
+
+
+  
