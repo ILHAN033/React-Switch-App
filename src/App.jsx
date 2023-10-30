@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const tasks = [
   {
@@ -9,8 +10,6 @@ const tasks = [
   },
   { id: 4, item: "Apple", checked: false, disabled: true },
 ];
-
-import { motion } from "framer-motion";
 
 function App() {
   const [items1, setItems1] = useState(tasks);
