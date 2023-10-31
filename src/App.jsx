@@ -18,8 +18,8 @@ function App() {
   const [input2, setInput2] = useState("");
 
   return (
-    <div className="h-screen flex items-center justify-center bg-gradient-to-r from-purple-500 to-blue-500 gap-2">
-      <h1 class="text-4xl font-bold text-white text-center p-16">
+    <div className="h-screen flex items-center justify-center bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 gap-2">
+      <h1 class="text-6xl font-bold text-white text-center p-18">
         <motion.span
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -92,7 +92,7 @@ function Form({ input, setInput, setItems, items }) {
   }
 
   return (
-    <div className="bg-gradient-to-br from-blue-600 to-purple-700 text-white p-8 rounded-lg shadow-xl">
+    <div className="bg-gradient-to-r from-orange-400 via-blue-300 to-blue-400 text-white p-8 rounded-lg shadow-xl">
       <form
         className="flex justify-center mt-5 gap-2"
         onSubmit={(e) => {
@@ -110,7 +110,7 @@ function Form({ input, setInput, setItems, items }) {
             console.log(input);
           }}
         />
-        <button className="px-6 py-3 text-white bg-gradient-to-r from-purple-700 to-blue-600 rounded-full hover:scale-105 transform transition-transform ease-in-out duration-300">
+        <button className="px-6 py-3 text-white bg-gradient-to-r from-purple-700 to-blue-600 rounded-half hover:scale-105 transform transition-transform ease-in-out duration-300">
           add
         </button>
       </form>
