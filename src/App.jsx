@@ -3,14 +3,12 @@ import { useState } from "react";
 const tasks = [
   {
     id: 2,
-    item: "banana",
+    name: "banana",
     checked: false,
     disabled: true,
   },
-  { id: 4, item: "Apple", checked: false, disabled: true },
+  { id: 4, name: "Apple", checked: false, disabled: true },
 ];
-
-import { motion } from "framer-motion";
 
 function App() {
   const [items1, setItems1] = useState(tasks);
@@ -19,53 +17,33 @@ function App() {
   const [input2, setInput2] = useState("");
 
   return (
-    <div className="h-screen flex items-center justify-center bg-gradient-to-r from-purple-500 to-blue-500 gap-2">
-      <h1 class="text-4xl font-bold text-white text-center p-16">
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-        >
-          React
-        </motion.span>
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-        >
-          <h3 className="my-futuristic-text-1">Switch</h3>
-        </motion.span>
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 3 }}
-        >
-          App
-        </motion.span>
-      </h1>
+    <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-r from-purple-500 to-blue-500 gap-10 ">
+      <div className="container">
+        <p className="text">React Switch App</p>
+      </div>
 
-      <Form
-        items={items1}
-        input={input1}
-        setItems={setItems1}
-        setInput={setInput1}
-      />
-
-      <Switch
-        items1={items1}
-        setItems1={setItems1}
-        setInput1={setInput1}
-        items2={items2}
-        setItems2={setItems2}
-        setInput2={setInput2}
-      />
-
-      <Form
-        items={items2}
-        input={input2}
-        setItems={setItems2}
-        setInput={setInput2}
-      />
+      <div className="flex gap-5">
+        <Form
+          items={items1}
+          input={input1}
+          setItems={setItems1}
+          setInput={setInput1}
+        />
+        <Switch
+          items1={items1}
+          setItems1={setItems1}
+          setInput1={setInput1}
+          items2={items2}
+          setItems2={setItems2}
+          setInput2={setInput2}
+        />
+        <Form
+          items={items2}
+          input={input2}
+          setItems={setItems2}
+          setInput={setInput2}
+        />
+      </div>
     </div>
   );
 }
@@ -75,7 +53,7 @@ function Form({ input, setInput, setItems, items }) {
     if (!input) return;
     const newItem = {
       id: Date.now(),
-      item: input,
+      name: input,
       checked: false,
       disabled: false,
     };
@@ -90,6 +68,10 @@ function Form({ input, setInput, setItems, items }) {
         item.id === id ? { ...item, checked: !item.checked } : item
       )
     );
+  }
+
+  function handleDelete(id) {
+    setItems((items) => items.filter((item) => item.id !== id));
   }
 
   return (
@@ -115,16 +97,19 @@ function Form({ input, setInput, setItems, items }) {
           add
         </button>
       </form>
-      <Display items={items} onToggle={checked} />
+      <Display items={items} onToggle={checked} onDelete={handleDelete} />
     </div>
   );
 }
 
-function Display({ items, onToggle }) {
+function Display({ items, onToggle, onDelete }) {
   return (
-    <ul>
+    <ul className="flex flex-col gap-2">
       {items?.map((item) => (
-        <li key={item.id} className={item.disabled ? "disabled" : "flex gap-2"}>
+        <li
+          key={item.id}
+          className={item.disabled ? "disabled" : "flex  justify-between"}
+        >
           <span style={item.checked ? { textDecoration: "line-through" } : {}}>
             {!item.disabled ? (
               <input
@@ -134,8 +119,16 @@ function Display({ items, onToggle }) {
               />
             ) : null}
 
-            {item.item}
+            {item.name}
           </span>
+          {item.disabled ? null : (
+            <button
+              className="rounded-lg bg-gradient-to-r from-red-700 to-orange-600 w-14 hover:scale-105 transform transition-transform ease-in-out duration-300"
+              onClick={() => onDelete(item.id)}
+            >
+              delete
+            </button>
+          )}
         </li>
       ))}
     </ul>
@@ -144,15 +137,15 @@ function Display({ items, onToggle }) {
 
 function Switch({ items1, items2, setItems1, setItems2 }) {
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 items-center">
       <button
         className="relative w-16 h-8 bg-gradient-to-r from-blue-500 to-purple-700 rounded-full"
         onClick={() =>
           items2.map((item, i) =>
-            item.checked === true
+            item.checked
               ? (setItems1((itm) => [
                   ...itm,
-                  { id: item.id, item: item.item, checked: !item.checked },
+                  { id: item.id, name: item.name, checked: !item.checked },
                 ]),
                 items2.splice(i, 1))
               : null
@@ -169,7 +162,7 @@ function Switch({ items1, items2, setItems1, setItems2 }) {
             item.checked
               ? (setItems2((itm) => [
                   ...itm,
-                  { id: item.id, item: item.item, checked: !item.checked },
+                  { id: item.id, name: item.name, checked: !item.checked },
                 ]),
                 items1.splice(i, 1))
               : item

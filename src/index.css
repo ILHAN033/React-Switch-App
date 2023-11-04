@@ -6,28 +6,42 @@
     color: #aaa; 
     cursor: not-allowed; 
     pointer-events: none; 
-    user-select: none; /
+    user-select: none; 
   }
 
+.container{
+  display: flex;
+  justify-content: center;
 
-@keyframes neon-glow-1 {
-  0% {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  }
-  100% {
-    text-shadow: 0 0 10px #00BFFF, 0 0 20px #00BFFF, 0 0 30px #00BFFF;
-  }
 }
 
-.my-futuristic-text-1 {
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 2rem;
-  color: #00BFFF;
-  text-transform: uppercase;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  letter-spacing: 2px;
-  animation: neon-glow-1 1s infinite alternate;
+
+.text{
+  font-size: 2em;
+  letter-spacing: 10px;
+  font-family: monospace;
+  border-right: 5px solid;
+  width: 25%;
+  white-space: nowrap;
+  overflow: hidden;
+  animation:typing 2s steps(16),
+   cursor .4s step-end infinite alternate;
+
 }
+
+@keyframes cursor{
+  50% { border-color:transparent;}
+}
+
+@keyframes typing{
+  from { width:0; }
+}
+
+
+
+
+
+
 
 
 
