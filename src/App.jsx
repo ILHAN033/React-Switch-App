@@ -1,25 +1,16 @@
 import { useState } from "react";
-
-const tasks = [
-  {
-    id: 2,
-    name: "banana",
-    checked: false,
-    disabled: true,
-  },
-  { id: 4, name: "Apple", checked: false, disabled: true },
-];
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function App() {
-  const [items1, setItems1] = useState(tasks);
-  const [items2, setItems2] = useState(tasks);
+  const [items1, setItems1] = useState([]);
+  const [items2, setItems2] = useState([]);
   const [input1, setInput1] = useState("");
   const [input2, setInput2] = useState("");
 
   return (
     <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-r from-purple-500 to-blue-500 gap-10 ">
       <div className="container">
-        <p className="text">React Switch App</p>
+        <p className="text my-heading">React Switch App</p>
       </div>
 
       <div className="flex gap-5">
@@ -123,10 +114,12 @@ function Display({ items, onToggle, onDelete }) {
           </span>
           {item.disabled ? null : (
             <button
-              className="rounded-lg bg-gradient-to-r from-red-700 to-orange-600 w-14 hover:scale-105 transform transition-transform ease-in-out duration-300"
+              className="bg-gradient-to-r from-red-600 via-red-500 to-red-600 text-white w-10 rounded-full hover:from-red-700 hover:via-red-600 hover:to-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
               onClick={() => onDelete(item.id)}
             >
-              delete
+              <>
+                <DeleteIcon htmlColor="black" />
+              </>
             </button>
           )}
         </li>

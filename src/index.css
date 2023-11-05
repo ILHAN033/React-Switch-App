@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.disabled {
-    color: #aaa; 
-    cursor: not-allowed; 
-    pointer-events: none; 
-    user-select: none; 
-  }
-
 .container{
   display: flex;
   justify-content: center;
@@ -21,13 +14,23 @@
   letter-spacing: 10px;
   font-family: monospace;
   border-right: 5px solid;
-  width: 25%;
+  width: 40%;
   white-space: nowrap;
   overflow: hidden;
   animation:typing 2s steps(16),
    cursor .4s step-end infinite alternate;
 
 }
+
+
+.my-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333; 
+  margin-bottom: 1rem; 
+  text-align: center; 
+}
+
 
 @keyframes cursor{
   50% { border-color:transparent;}
